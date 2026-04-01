@@ -1,11 +1,11 @@
 import java.util.*;
+import java.util.stream.Collectors;
 
-// Bogie class (custom object)
+// Bogie class
 class Bogie {
     String name;
     int capacity;
 
-    // Constructor
     Bogie(String name, int capacity) {
         this.name = name;
         this.capacity = capacity;
@@ -16,34 +16,34 @@ public class TrainConsistManagementApp {
 
     public static void main(String[] args) {
 
-        // Create list of bogies
+        // Create list of bogies (same as UC7)
         List<Bogie> bogies = new ArrayList<>();
-
-        // Add bogies
         bogies.add(new Bogie("Sleeper", 72));
         bogies.add(new Bogie("AC Chair", 56));
         bogies.add(new Bogie("First Class", 24));
         bogies.add(new Bogie("General", 90));
 
-        // Before Sorting
-        System.out.println("===========================================");
-        System.out.println("UC7 - Sort Bogies by Capacity (Comparator)");
-        System.out.println("===========================================");
+        System.out.println("==========================================");
+        System.out.println("UC8 - Filter Passenger Bogies Using Streams");
+        System.out.println("==========================================");
 
-        System.out.println("\nBefore Sorting:");
+        // Display all bogies
+        System.out.println("\nAll Bogies:");
         for (Bogie b : bogies) {
             System.out.println(b.name + " -> " + b.capacity);
         }
 
-        // Sort using Comparator (ascending order)
-        bogies.sort(Comparator.comparingInt(b -> b.capacity));
+        // 🔥 Stream filtering (capacity > 60)
+        List<Bogie> filtered = bogies.stream()
+                .filter(b -> b.capacity > 60)
+                .collect(Collectors.toList());
 
-        // After Sorting
-        System.out.println("\nAfter Sorting by Capacity:");
-        for (Bogie b : bogies) {
+        // Display filtered bogies
+        System.out.println("\nFiltered Bogies (Capacity > 60):");
+        for (Bogie b : filtered) {
             System.out.println(b.name + " -> " + b.capacity);
         }
 
-        System.out.println("\nUC7 sorting completed...");
+        System.out.println("\nUC8 filtering completed...");
     }
 }
